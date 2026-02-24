@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eat the Pizza!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="stylepizza.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <div class="page">
+        <div class="pizza-header-wrap">
+            <h1>Love at first bite.</h1>
+            <p class="pizza-subtext">Click a slice to eat it!</p>
+        </div>
+        <div class="pizza-container">
+            <div class="plate" aria-hidden="true"></div>
+            <img src="pizza.png" alt="Pizza with different toppings on each slice" class="pizza-img">
+            <!-- Invisible SVG overlay: 8 wedge slices for hit detection -->
+            <svg class="pizza-slices" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <path class="slice" data-slice="0" d="M 50 50 L 50 0 A 50 50 0 0 1 85.35 14.65 Z"></path>
+                <path class="slice" data-slice="1" d="M 50 50 L 85.35 14.65 A 50 50 0 0 1 100 50 Z"></path>
+                <path class="slice" data-slice="2" d="M 50 50 L 100 50 A 50 50 0 0 1 85.35 85.35 Z"></path>
+                <path class="slice" data-slice="3" d="M 50 50 L 85.35 85.35 A 50 50 0 0 1 50 100 Z"></path>
+                <path class="slice" data-slice="4" d="M 50 50 L 50 100 A 50 50 0 0 1 14.65 85.35 Z"></path>
+                <path class="slice" data-slice="5" d="M 50 50 L 14.65 85.35 A 50 50 0 0 1 0 50 Z"></path>
+                <path class="slice" data-slice="6" d="M 50 50 L 0 50 A 50 50 0 0 1 14.65 14.65 Z"></path>
+                <path class="slice" data-slice="7" d="M 50 50 L 14.65 14.65 A 50 50 0 0 1 50 0 Z"></path>
+            </svg>
+            <!-- Overlay where "eaten" slices are drawn (same wedge shapes, plate color) -->
+            <svg class="eaten-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                <!-- Filled by pizza.js when a slice is clicked -->
+            </svg>
+        </div>
+        <p class="message" id="slices-message">Slices eaten: <span id="count">0</span> / 8</p>
+    </div>
+    <nav class="page-nav">
+        <a href="index2.html" class="nav-prev" aria-label="Previous page">←</a>
+        <a href="indexsunet.html" class="nav-next" aria-label="Next page">→</a>
+    </nav>
+    <script src="pizza.js"></script>
+</body>
+</html>

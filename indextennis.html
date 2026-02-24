@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tennis Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="styletennis.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <div class="court-page">
+        <div class="game-container">
+            <div class="scoreboard">
+                <div class="score ai-score">
+                    <span class="label">AI</span>
+                    <span id="ai-score">0</span>
+                </div>
+                <div class="score player-score">
+                    <span class="label">You</span>
+                    <span id="player-score">0</span>
+                </div>
+            </div>
+            <div class="net" aria-hidden="true"></div>
+            <div class="paddle ai-paddle" id="ai-paddle"></div>
+            <div class="paddle player-paddle" id="player-paddle"></div>
+            <div class="ball" id="ball"></div>
+            <div class="game-over" id="game-over">
+                <h2 id="winner-text">You Win!</h2>
+                <button id="play-again">Play Again</button>
+            </div>
+            <div class="start-screen" id="start-screen">
+                <h2>A little excercise goes a long way.</h2>
+                <p>Hit the ball with your paddle. First to 11 wins.</p>
+                <button id="start-btn">Start Game</button>
+            </div>
+        </div>
+    </div>
+    <nav class="page-nav">
+        <a href="airplane.html" class="nav-prev" aria-label="Previous page">←</a>
+        <a href="fishpage.html" class="nav-next" aria-label="Next page">→</a>
+    </nav>
+    <script src="tennis.js"></script>
+</body>
+</html>

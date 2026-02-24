@@ -1,0 +1,128 @@
+/* Page background matches image background so "eaten" slices blend */
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: #ffe6e6;
+    font-family: 'Nunito', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page {
+    text-align: center;
+    padding: 2rem;
+}
+
+.pizza-header-wrap {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 5;
+    text-align: left;
+}
+
+.pizza-header-wrap h1 {
+    color: #8b3a3a;
+    margin: 0 0 0.25rem 0;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+.pizza-subtext {
+    color: #a64d4d;
+    margin: 0;
+    font-size: 1rem;
+}
+
+.pizza-container {
+    position: relative;
+    width: min(90vw, 420px);
+    aspect-ratio: 1;
+    margin: 0 auto;
+}
+
+/* Plate behind the pizza */
+.plate {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 108%;
+    height: 108%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: linear-gradient(145deg, #f0ebe3 0%, #e8e2d9 50%, #ddd6cc 100%);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.08),
+        0 2px 4px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    border: 3px solid rgba(255, 255, 255, 0.9);
+    z-index: 0;
+}
+
+.pizza-img {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: none;
+}
+
+/* Clickable slice overlay - same size as image */
+.pizza-slices {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+.pizza-slices .slice {
+    pointer-events: auto;
+    fill: transparent;
+    transition: fill 0.15s ease;
+}
+
+.pizza-slices .slice:hover {
+    fill: rgba(0, 0, 0, 0.06);
+}
+
+.pizza-slices .slice.eaten {
+    pointer-events: none;
+}
+
+/* Eaten slices drawn on top with plate color */
+.eaten-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.eaten-overlay path {
+    fill: #e8e2d9;
+    transition: opacity 0.2s ease;
+}
+
+.message {
+    position: fixed;
+    bottom: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    margin: 0;
+    color: #8b3a3a;
+    font-size: 1.35rem;
+}
+
+#count {
+    font-weight: 700;
+    color: #c44;
+}

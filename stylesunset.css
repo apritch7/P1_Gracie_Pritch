@@ -1,0 +1,166 @@
+/* Sunset Color Play - Full Page Game */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sunset-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+}
+
+#sunsetCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Controls Panel */
+.controls-panel {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(20, 15, 30, 0.85);
+    backdrop-filter: blur(12px);
+    padding: 20px 28px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 180, 120, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls-panel h2 {
+    width: 100%;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    color: rgba(255, 220, 180, 0.95);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.panel-hint {
+    width: 100%;
+    text-align: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 200, 150, 0.6);
+    margin-bottom: 8px;
+}
+
+.dial-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+
+.dial-group label {
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.7rem;
+    color: rgba(255, 200, 150, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.dial-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dial {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 80px;
+    height: 8px;
+    background: linear-gradient(90deg, 
+        rgba(100, 80, 120, 0.6), 
+        rgba(255, 150, 100, 0.6));
+    border-radius: 4px;
+    outline: none;
+}
+
+.dial::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 220, 180, 1), 
+        rgba(200, 120, 80, 0.9));
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    transition: transform 0.15s ease;
+}
+
+.dial::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+.dial::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, 
+        rgba(255, 220, 180, 1), 
+        rgba(200, 120, 80, 0.9));
+    cursor: grab;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.dial-value {
+    min-width: 42px;
+    font-size: 0.75rem;
+    color: rgba(255, 230, 200, 0.95);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Buttons */
+.reset-btn {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.reset-btn {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 220, 180, 0.95);
+    border: 1px solid rgba(255, 200, 150, 0.3);
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}

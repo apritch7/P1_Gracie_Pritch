@@ -1,0 +1,255 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    cursor: none;
+    font-family: 'Nunito', sans-serif;
+}
+
+/* Horizontal background: tennis court image */
+.court-page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.court-page::before {
+    content: "";
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 100vh;
+    height: 100vw;
+    margin-top: -50vw;
+    margin-left: -50vh;
+    background-image: url("tennis-court.png");
+    background-size: cover;
+    background-position: 98% center;
+    background-repeat: no-repeat;
+    transform: rotate(-90deg);
+    z-index: -1;
+}
+
+/* Game area - full viewport */
+.game-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    z-index: 1;
+}
+
+/* Scoreboard */
+.scoreboard {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 60px;
+    z-index: 10;
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.score .label {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+.score span:last-child {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Net - center of court */
+.net {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    margin-left: -3px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(255, 255, 255, 0.9) 10%,
+        rgba(255, 255, 255, 0.9) 90%,
+        transparent 100%
+    );
+    z-index: 2;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* Paddles - vertical bars */
+.paddle {
+    position: absolute;
+    width: 14px;
+    height: 80px;
+    background: linear-gradient(
+        135deg,
+        #2d5016 0%,
+        #3d6b1f 50%,
+        #2d5016 100%
+    );
+    border-radius: 4px;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.3),
+        0 3px 8px rgba(0, 0, 0, 0.4);
+    z-index: 5;
+}
+
+.ai-paddle {
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.player-paddle {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Tennis ball */
+.ball {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        #fff9e6,
+        #f5e642 40%,
+        #d4c42a 70%,
+        #b8a820
+    );
+    box-shadow:
+        inset -3px -3px 6px rgba(0, 0, 0, 0.2),
+        inset 2px 2px 4px rgba(255, 255, 255, 0.4),
+        0 2px 6px rgba(0, 0, 0, 0.3);
+    z-index: 6;
+}
+
+/* Shrink when crossing net */
+.ball.ball-shrink {
+    animation: ball-net-shrink 0.3s ease-out;
+}
+
+@keyframes ball-net-shrink {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.7); }
+    100% { transform: scale(1); }
+}
+
+/* White stripe on tennis ball */
+.ball::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    margin-top: -2px;
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 2px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Start screen */
+.start-screen {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+.start-screen h2 {
+    color: #e8f5e9;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.start-screen p {
+    color: #c8e6c9;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.start-screen.hidden {
+    display: none;
+}
+
+/* Game over overlay */
+.game-over {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 20;
+}
+
+.game-over.visible {
+    display: flex;
+}
+
+.game-over h2 {
+    color: #e8f5e9;
+    font-family: 'Nunito', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.game-over button,
+.start-screen button {
+    padding: 12px 28px;
+    font-size: 1.1rem;
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(180deg, #3d6b1f, #2d5016);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.game-over button:hover,
+.start-screen button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.game-over button:active,
+.start-screen button:active {
+    transform: translateY(0);
+}
+
+.game-over button,
+.start-screen button {
+    cursor: pointer;
+}

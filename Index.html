@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Quick Trip</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="style-front.css" />
+</head>
+
+<body>
+
+  <div class="stars" aria-hidden="true" id="stars"></div>
+
+  <header class="site-header">
+    <h1>Do you want to travel the world?</h1>
+    <h2>It is only one click away.</h2>
+  </header>
+
+  <main>
+    <div class="earth-wrap">
+      <div class="earth-orbit-text" aria-hidden="true">
+        <svg viewBox="0 0 600 600" class="orbit-svg">
+          <defs>
+            <path id="orbitPath" d="M300,20 A280,280 0 1,1 299.99,20" fill="none" />
+            <filter id="textGlow">
+              <feGaussianBlur stdDeviation="1" result="blur"/>
+              <feMerge>
+                <feMergeNode in="blur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+          <text fill="#ffeb99" font-family="Nunito, sans-serif" font-size="28" font-weight="700" filter="url(#textGlow)">
+            <textPath href="#orbitPath" startOffset="0">can you click the ticket? </textPath>
+          </text>
+        </svg>
+      </div>
+      <img class="earth" src="earthpic.png" alt="Earth" />
+    </div>
+  </main>
+
+  
+  <a class="ticket-link" href="index3.html">
+    <img class="ticket" src="ticketpic.png" alt="Ticket" />
+  </a>
+
+  <script>
+    (function() {
+      var container = document.getElementById('stars');
+      for (var i = 0; i < 120; i++) {
+        var star = document.createElement('span');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = (Math.random() * 3) + 's';
+        star.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+        container.appendChild(star);
+      }
+    })();
+  </script>
+</body>
+</html>

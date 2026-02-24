@@ -1,0 +1,294 @@
+body {
+    margin: 0;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    /* Water-like gradient: lighter at top (surface), deeper blue-teal at bottom */
+    background: linear-gradient(
+        180deg,
+        #7ec8e3 0%,
+        #4da6c4 18%,
+        #2e8b9e 40%,
+        #1a6b7a 65%,
+        #0d4d5c 85%,
+        #083a47 100%
+    );
+}
+
+/* Header – top right */
+.fish-header-wrap {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 10;
+    text-align: right;
+}
+
+.fish-header {
+    margin: 0 0 0.25rem 0;
+    color: #e8f7fc;
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.fish-subtext {
+    margin: 0;
+    color: #b8e4f0;
+    font-family: 'Nunito', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Container for fish – full tank so they can swim around */
+.tank {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    /* Subtle surface shimmer overlay */
+    box-shadow: inset 0 0 120px rgba(255, 255, 255, 0.06);
+}
+
+.tank::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    /* Very subtle caustic-style light ripples */
+    background: radial-gradient(
+            ellipse 80% 30% at 20% 15%,
+            rgba(255, 255, 255, 0.08) 0%,
+            transparent 50%
+        ),
+        radial-gradient(
+            ellipse 60% 25% at 80% 25%,
+            rgba(255, 255, 255, 0.05) 0%,
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse 70% 20% at 50% 10%,
+            rgba(255, 255, 255, 0.04) 0%,
+            transparent 40%
+        );
+}
+
+/* Surface line – top of water */
+.tank::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    pointer-events: none;
+    z-index: 2;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.25) 20%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0.25) 80%,
+        transparent 100%
+    );
+}
+
+/* Bubbles – rise from bottom */
+.bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -20px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.7),
+        rgba(255, 255, 255, 0.2)
+    );
+    animation: rise linear infinite;
+}
+
+.bubble:nth-child(1) { left: 8%; animation-duration: 6s; animation-delay: 0s; width: 6px; height: 6px; }
+.bubble:nth-child(2) { left: 18%; animation-duration: 8s; animation-delay: 1s; width: 10px; height: 10px; }
+.bubble:nth-child(3) { left: 28%; animation-duration: 7s; animation-delay: 2.5s; width: 5px; height: 5px; }
+.bubble:nth-child(4) { left: 45%; animation-duration: 9s; animation-delay: 0.5s; width: 8px; height: 8px; }
+.bubble:nth-child(5) { left: 55%; animation-duration: 6.5s; animation-delay: 3s; width: 7px; height: 7px; }
+.bubble:nth-child(6) { left: 68%; animation-duration: 7.5s; animation-delay: 1.5s; width: 9px; height: 9px; }
+.bubble:nth-child(7) { left: 78%; animation-duration: 8.5s; animation-delay: 4s; width: 6px; height: 6px; }
+.bubble:nth-child(8) { left: 88%; animation-duration: 6s; animation-delay: 2s; width: 5px; height: 5px; }
+.bubble:nth-child(9) { left: 35%; animation-duration: 7s; animation-delay: 5s; width: 7px; height: 7px; }
+.bubble:nth-child(10) { left: 62%; animation-duration: 8s; animation-delay: 3.5s; width: 6px; height: 6px; }
+.bubble:nth-child(11) { left: 12%; animation-duration: 9s; animation-delay: 4.5s; width: 8px; height: 8px; }
+.bubble:nth-child(12) { left: 92%; animation-duration: 7s; animation-delay: 0.8s; width: 5px; height: 5px; }
+
+@keyframes rise {
+    0% { transform: translateY(0) translateX(0); opacity: 0.9; }
+    10% { opacity: 1; }
+    90% { opacity: 0.7; }
+    100% { transform: translateY(-100vh) translateX(15px); opacity: 0; }
+}
+
+/* Floating particles (tiny specks) */
+.particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    animation: float linear infinite;
+}
+
+.particle {
+    bottom: -10px;
+    top: auto;
+}
+.particle:nth-child(1) { left: 15%; animation-duration: 18s; animation-delay: 0s; }
+.particle:nth-child(2) { left: 50%; animation-duration: 22s; animation-delay: 3s; }
+.particle:nth-child(3) { left: 75%; animation-duration: 16s; animation-delay: 6s; }
+.particle:nth-child(4) { left: 25%; animation-duration: 20s; animation-delay: 2s; }
+.particle:nth-child(5) { left: 85%; animation-duration: 19s; animation-delay: 4s; }
+
+@keyframes float {
+    0% { transform: translateY(0) translateX(0); opacity: 0.25; }
+    50% { transform: translateY(-50vh) translateX(20px); opacity: 0.4; }
+    100% { transform: translateY(-100vh) translateX(-10px); opacity: 0; }
+}
+
+/* Worm – dropped on click, falls until it hits a fish then disappears */
+.worm {
+    position: absolute;
+    width: 20px;
+    height: 8px;
+    left: 0;
+    top: 0;
+    z-index: 4;
+    pointer-events: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #ff9ebb 0%, #ff6b9d 50%, #e84a7a 100%);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Fish styling – positioned absolutely for swimming (above bubbles) */
+.fish {
+    position: absolute;
+    width: 280px;
+    height: auto;
+    border-radius: 10px;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    z-index: 3;
+}
+
+/* Subtle drift + bobbing + flip direction (same image, reversed with scaleX) */
+.fish-1 {
+    top: 15%;
+    left: 10%;
+    animation: swim1 28s ease-in-out infinite;
+}
+.fish-2 {
+    top: 45%;
+    left: 25%;
+    animation: swim2 32s ease-in-out infinite 0.5s;
+}
+.fish-3 {
+    top: 65%;
+    left: 60%;
+    animation: swim3 30s ease-in-out infinite 1s;
+}
+.fish-4 {
+    top: 25%;
+    left: 70%;
+    animation: swim4 26s ease-in-out infinite 0.3s;
+}
+/* Duplicates (fish-5 to 8) use separate drift zones so same image isn’t next to original */
+.fish-5 {
+    top: 70%;
+    left: 74%;
+    animation: swim5 28s ease-in-out infinite 7s;
+}
+.fish-6 {
+    top: 20%;
+    left: 68%;
+    animation: swim6 32s ease-in-out infinite 10s;
+}
+.fish-7 {
+    top: 18%;
+    left: 20%;
+    animation: swim7 30s ease-in-out infinite 5s;
+}
+.fish-8 {
+    top: 70%;
+    left: 14%;
+    animation: swim8 26s ease-in-out infinite 12s;
+}
+
+/* Drift + gentle bob + switch direction (scaleX(-1) = same picture reversed) */
+@keyframes swim1 {
+    0%, 100% { left: 10%; top: 15%; transform: translateY(0) scaleX(1); }
+    25% { left: 14%; top: 12%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 8%; top: 18%; transform: translateY(0) scaleX(-1); }
+    75% { left: 12%; top: 16%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim2 {
+    0%, 100% { left: 25%; top: 45%; transform: translateY(0) scaleX(1); }
+    25% { left: 22%; top: 42%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 28%; top: 48%; transform: translateY(0) scaleX(-1); }
+    75% { left: 24%; top: 46%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim3 {
+    0%, 100% { left: 60%; top: 65%; transform: translateY(0) scaleX(1); }
+    25% { left: 56%; top: 62%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 64%; top: 68%; transform: translateY(0) scaleX(-1); }
+    75% { left: 61%; top: 66%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim4 {
+    0%, 100% { left: 70%; top: 25%; transform: translateY(0) scaleX(1); }
+    25% { left: 67%; top: 22%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 73%; top: 28%; transform: translateY(0) scaleX(-1); }
+    75% { left: 70%; top: 25%; transform: translateY(-3px) scaleX(-1); }
+}
+/* Duplicate fish drift in opposite areas so pairs stay apart */
+@keyframes swim5 {
+    0%, 100% { left: 74%; top: 70%; transform: translateY(0) scaleX(1); }
+    25% { left: 78%; top: 68%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 72%; top: 75%; transform: translateY(0) scaleX(-1); }
+    75% { left: 76%; top: 72%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim6 {
+    0%, 100% { left: 68%; top: 20%; transform: translateY(0) scaleX(1); }
+    25% { left: 72%; top: 18%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 65%; top: 25%; transform: translateY(0) scaleX(-1); }
+    75% { left: 69%; top: 22%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim7 {
+    0%, 100% { left: 20%; top: 18%; transform: translateY(0) scaleX(1); }
+    25% { left: 24%; top: 14%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 16%; top: 22%; transform: translateY(0) scaleX(-1); }
+    75% { left: 22%; top: 20%; transform: translateY(-3px) scaleX(-1); }
+}
+@keyframes swim8 {
+    0%, 100% { left: 14%; top: 70%; transform: translateY(0) scaleX(1); }
+    25% { left: 18%; top: 68%; transform: translateY(-3px) scaleX(1); }
+    50% { left: 10%; top: 75%; transform: translateY(0) scaleX(-1); }
+    75% { left: 16%; top: 72%; transform: translateY(-3px) scaleX(-1); }
+}

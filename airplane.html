@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paper Airplane</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="style-airplane.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <div class="scene">
+        <div class="sky"></div>
+        <div class="ground"></div>
+        <div class="workspace">
+                <div class="paper step-0" id="paper" role="button" tabindex="0" aria-label="Click to fold paper into airplane">
+                    <div class="paper-sheet">
+                        <div class="paper-half paper-left"></div>
+                        <div class="paper-half paper-right"></div>
+                    </div>
+                    <img src="airplane.png" alt="Paper airplane" class="paper-airplane">
+                </div>
+                <p class="hint" id="hint">Click the paper to fold it into an airplane</p>
+                <button class="try-again-btn" id="tryAgainBtn">try again?</button>
+        </div>
+    </div>
+    <nav class="page-nav">
+        <a href="indexpassport.html" class="nav-prev" aria-label="Previous page">←</a>
+        <a href="indextennis.html" class="nav-next" aria-label="Next page">→</a>
+    </nav>
+    <script src="airplane.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunset Color Play</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="fonts.css">
+    <link rel="stylesheet" href="stylesunset.css">
+    <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+    <div class="sunset-container">
+        <canvas id="sunsetCanvas"></canvas>
+    </div>
+
+    <div class="controls-panel">
+        <h2>A sunset is the best way to end the day</h2>
+        <p class="panel-hint">Create your own dream sunset.</p>
+        
+        <div class="dial-group">
+            <label>Hue Shift</label>
+            <div class="dial-wrap">
+                <input type="range" id="hueDial" class="dial" min="0" max="360" value="0" orient="vertical">
+                <span class="dial-value" id="hueValue">0°</span>
+            </div>
+        </div>
+
+        <div class="dial-group">
+            <label>Saturation</label>
+            <div class="dial-wrap">
+                <input type="range" id="saturationDial" class="dial" min="0" max="200" value="100">
+                <span class="dial-value" id="saturationValue">100%</span>
+            </div>
+        </div>
+
+        <div class="dial-group">
+            <label>Warmth</label>
+            <div class="dial-wrap">
+                <input type="range" id="warmthDial" class="dial" min="0" max="200" value="100">
+                <span class="dial-value" id="warmthValue">100%</span>
+            </div>
+        </div>
+
+        <div class="dial-group">
+            <label>Brightness</label>
+            <div class="dial-wrap">
+                <input type="range" id="brightnessDial" class="dial" min="50" max="150" value="100">
+                <span class="dial-value" id="brightnessValue">100%</span>
+            </div>
+        </div>
+
+        <button id="resetBtn" class="reset-btn">Reset</button>
+    </div>
+
+    <nav class="page-nav">
+        <a href="indexpizza.html" class="nav-prev" aria-label="Previous page">←</a>
+        <a href="indexlast.html" class="nav-next" aria-label="Next page">→</a>
+    </nav>
+    <script src="indexsunet.js"></script>
+</body>
+</html>
